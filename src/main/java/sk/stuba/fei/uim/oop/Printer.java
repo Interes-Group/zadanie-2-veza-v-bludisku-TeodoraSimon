@@ -2,13 +2,13 @@ package sk.stuba.fei.uim.oop;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class Printer extends JFrame {
 
     public Printer(){
+
         super("Maze");
-        setBounds(100,100,1000,800);
+        setBounds(100,100,800,600);
         setResizable(false);
         setLayout(new BorderLayout());
 

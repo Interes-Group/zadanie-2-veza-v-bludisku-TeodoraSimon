@@ -15,33 +15,36 @@ public class Paint extends Canvas {
     Random rand;
 
     public Paint(){
+
         this.row = 12;
         this.col = 12;
         this.border = 2;
-        this.tileHeight = 50;
-        this.tileWidth = 50;
+        this.tileHeight = 40;
+        this.tileWidth = 40;
         this.wallDensity = 10;
         tiles = new Tile[row][col];
         rand=new Random();
         generateMaze();
+
     }
 
     public void paint(Graphics g){
         //setBackground(Color.BLACK);
         for(int i =0;i<row;i++){
             for(int j=0;j<col;j++){
-                g.drawRect(i*50+border, j*50+border, tileWidth-2*border,tileHeight-2*border);
+                g.drawRect(i*40+border, j*40+border, tileWidth-2*border,tileHeight-2*border);
                 g.setColor(Color.blue);
-                g.fillRect(i*50+border, j*50+border, tileWidth-2*border,tileHeight-2*border);
+                g.fillRect(i*40+border, j*40+border, tileWidth-2*border,tileHeight-2*border);
 
                 g.setColor(Color.blue);
             }
         }
         g.setColor(Color.blue);
-        g.fillRect(25,1,48,48);
+        g.fillRect(15,1,38,38);
     }
 
     private void generateMaze(){
+
         for(int i=0;i<row;i++){
             for(int j=0;j<col;j++){
                 tiles[i][j] = new Tile(j*tileWidth, i*tileHeight, tileWidth, tileHeight);
@@ -55,19 +58,21 @@ public class Paint extends Canvas {
     }
 
     private void tileField(Tile tiles, int density){
+
         for(int i=0;i<density;i++){
             while(true){
                 int r = rand.nextInt()%4;
 
                 if(checkBorder(tiles, r)){
+                    tiles.addMove(r);
                     break;
                 }
             }
-
         }
     }
 
     private boolean checkBorder(Tile tiles, int  numMove){
+
         switch(numMove){
             case 0:
                 if(tiles.getY() == 0){
@@ -93,11 +98,8 @@ public class Paint extends Canvas {
                 }else {
                     return true;
                 }
-
         }
         return false;
-
-
 
     }
 }

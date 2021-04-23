@@ -1,10 +1,10 @@
 package sk.stuba.fei.uim.oop;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Tile {
 
+    private boolean visited;
     private int x;
     private int y;
     private int width;
@@ -13,6 +13,7 @@ public class Tile {
 
     public Tile(int x, int y, int width, int height){
 
+        visited = false;
         this.x = x;
         this.y = y;
         this.height = height;
@@ -56,5 +57,17 @@ public class Tile {
     public void addMove(NextMove move){
         moves.add(move);
     }
+    public void addMove(int move){
+        moves.add(NextMove.values()[move]);
+        //moves.add(move);
+    }
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
 
 }
