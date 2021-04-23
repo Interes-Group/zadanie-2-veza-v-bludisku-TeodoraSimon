@@ -9,7 +9,10 @@ public class Tile {
     private int y;
     private int width;
     private int height;
-    ArrayList<NextMove> moves;
+    private ArrayList<NextMove> moves;
+    private ArrayList<Tile> nextiles;
+    private int binding;
+
 
     public Tile(int x, int y, int width, int height){
 
@@ -19,7 +22,15 @@ public class Tile {
         this.height = height;
         this.width = width;
         moves = new ArrayList<NextMove>();
+        nextiles = new ArrayList<Tile>();
+        binding = 0;
 
+    }
+    public int getBinding(){
+        return binding;
+    }
+    public ArrayList<Tile> getNextTiles(){
+        return nextiles;
     }
 
     public int getX() {
@@ -59,7 +70,10 @@ public class Tile {
     }
     public void addMove(int move){
         moves.add(NextMove.values()[move]);
-        //moves.add(move);
+
+    }
+    public void addMove(Tile T){
+        nextiles.add(T);
     }
     public boolean isVisited() {
         return visited;
@@ -67,6 +81,32 @@ public class Tile {
 
     public void setVisited(boolean visited) {
         this.visited = visited;
+    }
+    public boolean getVisited(){
+        return this.visited;
+    }
+
+
+    void connect(Tile t){
+        int x1 = this.getX() , y1 = this.getY();
+
+        int x2 = t.getX() , y2 = t.getY();
+
+        if(x1 == x2){
+            if(y1 < y2){
+                binding = binding | 2;
+            }else{
+                binding = binding | 1;
+            }
+        }
+
+        if(y1 == y2){
+            if(x1 < x2){
+                binding = binding | 4;
+            }else{
+                binding = binding | 8;
+            }
+        }
     }
 
 

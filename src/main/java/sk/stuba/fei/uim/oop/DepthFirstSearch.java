@@ -16,24 +16,34 @@ public class DepthFirstSearch {
         movesToDO = new HashMap<String ,Tile>();
         movesDone = new HashMap<String ,Tile>();
         list = new ArrayList<Tile>();
+        Tile [][]tilovi = paint.getTile();
+        doSearch(tilovi[0][0]);
     }
 
     public void doSearch(Tile T){
         T.setVisited(true);
-        Tile nextTile = randomUnvisited();
+        Tile nextTile = randomUnvisited(T);
         while(nextTile != null){
-            // spoji Tileove(Tile,nextTile)
+            T.connect( nextTile);
+
             doSearch(nextTile);
-            nextTile = randomUnvisited();
+            nextTile = randomUnvisited(T);
         }
 
     }
-    private Tile randomUnvisited(){
-        return list.remove(list.size() - 1);
+    private Tile randomUnvisited(Tile T){
+        ArrayList<Tile> tiles = T.getNextTiles();
+        if(tiles.isEmpty()){
+            return null;
+        }
 
-    }
-    private void getValidNextMove(Tile tile){
+        Tile removed;
+        removed = tiles.remove(tiles.size() - 1);
 
+        if(removed.getVisited()){
+            return paint.getNeig(T);
+        }
 
+        return removed;
     }
 }

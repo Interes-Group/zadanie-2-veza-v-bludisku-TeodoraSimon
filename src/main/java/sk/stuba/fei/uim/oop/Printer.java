@@ -11,10 +11,12 @@ public class Printer extends JFrame {
         setBounds(100,100,800,600);
         setResizable(false);
         setLayout(new BorderLayout());
-
-        add(new Paint(), BorderLayout.CENTER);
+        Paint p = new Paint();
+        add(p, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        DepthFirstSearch searchProm = new DepthFirstSearch(p);
 
     }
 
