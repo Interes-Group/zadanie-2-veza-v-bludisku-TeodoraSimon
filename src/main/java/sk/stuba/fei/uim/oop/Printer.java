@@ -17,6 +17,7 @@ public class Printer extends JFrame {
         Figure f = new Figure();
         Paint p = new Paint(f,this);
 
+
         setFocusable(true);
         requestFocusInWindow();
 

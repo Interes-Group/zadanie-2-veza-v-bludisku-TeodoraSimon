@@ -153,6 +153,12 @@ public class Figure extends Canvas {
 
     }
 
+    public void paintEnd(Graphics g){
+        g.setColor(Color.red);
+        g.fillRect(450,450,dimension ,dimension);
+
+    }
+
     private void endOfGame( Paint p){
 
         p.generateMaze();

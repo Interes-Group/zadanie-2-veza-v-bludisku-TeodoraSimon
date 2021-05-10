@@ -55,6 +55,7 @@ public class Paint extends Canvas {
             }
         }
         f.paint(g);
+        f.paintEnd(g);
 
     }
 
