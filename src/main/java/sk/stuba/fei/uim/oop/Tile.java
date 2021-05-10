@@ -3,34 +3,22 @@ package sk.stuba.fei.uim.oop;
 import java.util.ArrayList;
 
 public class Tile {
-
     private boolean visited;
     private int x;
     private int y;
     private int width;
     private int height;
-    private ArrayList<NextMove> moves;
-    private ArrayList<Tile> nextiles;
-    private int binding;
+    private  int row;
+    private int column;
+    private boolean stanja[];
+    private boolean can_move;
 
-
-    public Tile(int x, int y, int width, int height){
-
-        visited = false;
-        this.x = x;
-        this.y = y;
-        this.height = height;
-        this.width = width;
-        moves = new ArrayList<NextMove>();
-        nextiles = new ArrayList<Tile>();
-        binding = 0;
-
+    public boolean isVisited() {
+        return visited;
     }
-    public int getBinding(){
-        return binding;
-    }
-    public ArrayList<Tile> getNextTiles(){
-        return nextiles;
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
     public int getX() {
@@ -65,49 +53,59 @@ public class Tile {
         this.height = height;
     }
 
-    public void addMove(NextMove move){
-        moves.add(move);
-    }
-    public void addMove(int move){
-        moves.add(NextMove.values()[move]);
-
-    }
-    public void addMove(Tile T){
-        nextiles.add(T);
-    }
-    public boolean isVisited() {
-        return visited;
+    public int getRow() {
+        return row;
     }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
-    }
-    public boolean getVisited(){
-        return this.visited;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-
-    void connect(Tile t){
-        int x1 = this.getX() , y1 = this.getY();
-
-        int x2 = t.getX() , y2 = t.getY();
-
-        if(x1 == x2){
-            if(y1 < y2){
-                binding = binding | 2;
-            }else{
-                binding = binding | 1;
-            }
-        }
-
-        if(y1 == y2){
-            if(x1 < x2){
-                binding = binding | 4;
-            }else{
-                binding = binding | 8;
-            }
-        }
+    public int getColumn() {
+        return column;
     }
 
+    public void setColumn(int column) {
+        this.column = column;
+    }
 
+    public boolean[] getStanja() {
+        return stanja;
+    }
+
+    public void setStanja(boolean stanja[]) {
+        this.stanja = stanja;
+    }
+
+    public Tile(int x, int y , int row , int col){
+        this.x = x;
+        this.y = y;
+        this.row = row;
+        this.column = col;
+        width = 40;
+        height = 40;
+        visited = false;
+        this.stanja= new boolean[4];
+        this.can_move = false;
+    }
+
+    public Tile(int x, int y , int width , int height , int row , int col){
+        this.x = x;
+        this.y = y;
+        this.row = row;
+        this.column = col;
+        this.width = width;
+        this.height = height;
+        visited = false;
+        this.stanja= new boolean[4];
+        this.can_move = false;
+    }
+
+    public boolean isCan_move() {
+        return can_move;
+    }
+
+    public void setCan_move(boolean can_move) {
+        this.can_move = can_move;
+    }
 }
